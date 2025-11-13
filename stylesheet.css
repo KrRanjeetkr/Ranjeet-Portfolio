@@ -39,7 +39,7 @@ body {
     font-size: 25px;
     color: #fff;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     margin-left: 35px;
     transition: .3s;
     opacity: 0;
@@ -56,7 +56,7 @@ body {
     width: 100%;
     justify-content: space-between;
     height: 100vh;
-    background: url(assets/temp_ranjit.png) no-repeat;
+    background: url(assets/home_background.PNG) no-repeat;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -149,41 +149,127 @@ body {
         0 0 25px cyan, 0 0 50px cyan,
         0 0 100px cyan, 0 0 200px cyan
 }
-.about{
-    display: grid;
+
+.about {
+    display: flex;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     gap: 1.5rem;
 }
-.about-img img{
+
+.about-img img {
     padding-bottom: 20%;
     max-width: 630px;
     height: auto;
     width: 100%;
     border-radius: 8px;
 }
-.about-text h2{
+
+.about-text h2 {
     font-size: 60px;
 }
-.about-text h2 span{
+
+.about-text h2 span {
     color: #0ef;
-    font-size: 20px;
+    /* font-size: 20px;
     line-height: 1.4;
-    margin-bottom: 4rem;
+    margin-bottom: 4rem; */
 
 }
-.about-text h4{
+
+.about-text h4 {
     font-size: 29px;
     font-weight: 600;
     color: #fff;
     line-height: 1.7;
     margin: 15px 0 30px;
 }
+
 .about-text p {
     color: aliceblue;
     font-size: 20px;
     line-height: 1.4;
     margin-bottom: 4rem;
+}
+.services{
+    color: aliceblue;
+    font-size: 20px;
+    line-height: 1.4;
+    margin-bottom: 4rem;
+}
+.sub-title{
+    text-align: center;
+    font-size: 60px;
+    padding-bottom: 70px;
+}
+.sub-title span{
+    color: #0ef;
+}
+.container{
+    padding: 90px;
+}
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(259px, 1fr));
+    grid-gap: 40px;
+    margin-bottom: 50px;
+
+}
+.services-list div{
+    background-color: transparent;
+    padding: 40px;
+    font-size: 13px;
+    font-weight: 13px;
+    border-right: 10px;
+    border-radius: 20px;
+    transition: background 0.5s, transform 0.5s;
+    box-shadow:1px 1px 20px #012290f7,
+    1px 1px 40px #0053b8f7 
+
+}
+.services-list div i{
+    font-size: 50px;
+    margin-bottom: 30px;
+
+}
+.services-list div h2{
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 15px;
+
+}
+.services-list div a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 12px;
+    margin-top: 20px;
+    display: inline-block;
+
+    
+}
+.read{
+    display: inline-block;
+    padding: 12px 28px;
+    background: #0ef;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #081b29;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0;
+    animation: slideTop 1s ease forwards;
+    animation-delay: 2s;
+    box-shadow: 0 0 5px #0ef,
+        0 0 25px #0ef
+}
+.read:hover{
+    box-shadow: 0 0 5px cyan,
+    0 0 25px cyan, 0 0 50px cyan,
+    0 0 100px cyan, 0 0 200px cyan
+}
+.services-list div:hover{
+    transform: translateY(-10px);
 }
 
 
@@ -225,7 +311,7 @@ body {
 
 @keyframes slideTop {
     0% {
-        transform: translateY(-100px);
+        transform: translateY(100px);
         opacity: 0;
     }
 
@@ -245,4 +331,165 @@ body {
         transform: translateY(0px);
         opacity: 1;
     }
+}
+/* CHAT ICON */
+.chat-container {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1000;
+}
+
+/* Floating Chat Icon */
+.chat-icon {
+  width: 65px;
+  height: 65px;
+  background: #00eeff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 15px #00eeff;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.chat-icon img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.chat-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #00eeff;
+}
+
+/* Chatbox (hidden by default) */
+.chatbox {
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  width: 320px;
+  height: 420px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  box-shadow: 0 0 20px #00eeff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transform: translateX(120%);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+/* When active */
+.chatbox.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Chat Header */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #00eeff;
+  color: black;
+  padding: 10px 15px;
+  font-weight: bold;
+}
+
+#close-chat {
+  cursor: pointer;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* Chat Window */
+.chat-window {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  background: #1e1e1e;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 80%;
+}
+
+.chat-message.bot {
+  align-self: flex-start;
+  color: #00eeff;
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  background: #00eeff;
+  color: black;
+}
+
+/* Input Area */
+.chat-input {
+  display: flex;
+  border-top: 1px solid #00eeff;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+}
+
+.chat-input button {
+  width: 50px;
+  border: none;
+  background: #00eeff;
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 0 10px 10px 0;
+  transition: background 0.3s;
+}
+
+.chat-input button:hover {
+  background: #00bcd4;
+}
+/* Floating Chat Icon - Fixed at bottom right */
+.chat-icon {
+  position: fixed;        /* Fixed position on screen */
+  bottom: 2%;           /* Distance from bottom */
+  right: 1%;            /* Distance from right */
+  width: 65px;
+  height: 65px;
+  background: #00eeff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 15px #00eeff;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+.chat-icon img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.chat-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px #00eeff;
 }
