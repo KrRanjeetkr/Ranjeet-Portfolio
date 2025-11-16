@@ -1,12 +1,19 @@
+<!doctype html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio Chatbox — Android & iOS Developer</title>
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Ranjeet Kumar - Full Stack Mobile App Developer skilled in Android, iOS, and web development. Creating high-performance, cross-platform applications.">
-  <meta name="keywords" content="Ranjeet Kumar, Portfolio, Android Developer, iOS Developer, Full Stack Developer, Mobile App Developer, Web Developer">
+  <meta name="description"
+    content="Ranjeet Kumar - Full Stack Mobile App Developer skilled in Android, iOS, and web development. Creating high-performance, cross-platform applications.">
+  <meta name="keywords"
+    content="Ranjeet Kumar, Portfolio, Android Developer, iOS Developer, Full Stack Developer, Mobile App Developer, Web Developer">
   <meta name="author" content="Ranjeet Kumar">
 
   <title>Ranjeet Kumar | Portfolio</title>
@@ -16,260 +23,481 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <style>
+    :root {
+      --bg: #0f1724;
+      --panel: #0b1220;
+      --accent: #06b6d4;
+      --muted: #94a3b8;
+      --bubble: #111827;
+      --glass: rgba(255, 255, 255, 0.03);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    /* Floating button */
+    .chat-fab {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9999
+    }
+
+    .chat-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), #0ea5a4);
+      box-shadow: 0 8px 24px rgba(2, 6, 23, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      cursor: pointer
+    }
+
+    .chat-btn img {
+      width: 28px;
+      height: 28px;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4))
+    }
+
+    /* Panel */
+    .chat-panel {
+      position: fixed;
+      right: 20px;
+      bottom: 96px;
+      width: 360px;
+      max-width: 92vw;
+      height: 520px;
+      background: linear-gradient(180deg, var(--panel), #071024);
+      border-radius: 14px;
+      box-shadow: 0 16px 50px rgba(2, 6, 23, 0.6);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      z-index: 9998
+    }
+
+    .chat-header {
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--glass)
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #0ea5a4, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #042027;
+      font-weight: 700
+    }
+
+    .title {
+      font-weight: 600;
+      color: #e6eef6
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    .close {
+      margin-left: auto;
+      background: transparent;
+      border: 0;
+      color: var(--muted);
+      cursor: pointer
+    }
+
+    .chat-body {
+      padding: 16px;
+      flex: 1;
+      overflow: auto;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent)
+    }
+
+    .messages {
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .msg {
+      max-width: 78%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.3
+    }
+
+    .msg.user {
+      align-self: flex-end;
+      background: linear-gradient(180deg, #056b70, #055c63);
+      color: #eaffff;
+      border-bottom-right-radius: 4px
+    }
+
+    .msg.bot {
+      align-self: flex-start;
+      background: var(--bubble);
+      color: #e6eef6;
+      border-bottom-left-radius: 4px
+    }
+
+    .quick {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px
+    }
+
+    .chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      cursor: pointer;
+      font-size: 13px
+    }
+
+    .chat-footer {
+      padding: 10px;
+      display: flex;
+      gap: 8px;
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.01), transparent)
+    }
+
+    .input {
+      flex: 1;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      color: #e6eef6
+    }
+
+    .send {
+      background: var(--accent);
+      border: 0;
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer
+    }
+
+    .meta {
+      padding: 10px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px dashed rgba(255, 255, 255, 0.02)
+    }
+
+    /* small screens */
+    @media (max-width:600px) {
+      .chat-panel {
+        width: 94vw;
+        right: 3vw;
+        left: 3vw;
+        bottom: 84px;
+        height: 68vh
+      }
+    }
+
+    .skills-section {
+      padding: 50px 0;
+    }
+
+    .skills-container {
+      width: 100%;
+      margin: auto;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-gap: 25px;
+      margin-top: 40px;
+    }
+
+    .skill-card {
+      background: #1c1c1c;
+      padding: 30px 20px;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.4s, background 0.4s;
+      border: 1px solid #00eeff44;
+      cursor: pointer;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      background: #00eeff22;
+    }
+
+    .skill-card i {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .skill-card h3 {
+      font-size: 20px;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+     html {
+    scroll-behavior: smooth;
+  }
+  </style>
+
+
 </head>
 
 
 <body>
 
-    <header class="header">
-        <a href="#" class="logo">Portfolio</a>
-        <nav class="navbar">
-            <a href="#home" style="--i:1" class="active">Home</a>
-            <a href="#about" style="--i:2">About</a>
-            <a href="#skill" style="--i:3">Skill</a>
-            <a href="#services" style="--i:2">My Services</a>
-            <a href="#project" style="--i:4">Project</a>
-            <a href="#contact" style="--i:5">Contact</a>
-        </nav>
-    </header>
-
-    <section class="home" id="home">
-  <div class="home-content">
-    <h3>Hello It's Me</h3>
-    <h1>Ranjeet Kumar</h1>
-    <h3>And I'm a <span class="text"></span></h3>
-    <p>
-      I'm a Mobile Application Developer with extensive experience for over 3.5 years.
-      <br>Expert in creating Android, iOS, and web apps with maintenance, frontend, backend, and more...
-    </p>
-
-    <div class="home-sci">
-      <a href="https://www.linkedin.com/in/johndoe/" target="_blank" style="--i:8" title="LinkedIn">
-        <i class='bx bxl-linkedin'></i>
-      </a>
-      <a href="https://wa.me/15551234567" target="_blank" style="--i:9" title="WhatsApp">
-        <i class='bx bxl-whatsapp'></i>
-      </a>
-      <a href="https://github.com/KrRanjeetkr" target="_blank" style="--i:7" title="GitHub">
-        <i class='bx bxl-github'></i>
-      </a>
-    </div>
-
-    <a href="#about" class="btn-box">More About Me</a>
-  </div>
-
-  <span class="home-imghover"></span>
-</section>
+  <header class="header">
+    <a href="#" class="logo" id="logoBtn">Portfolio</a>
 
 
+    <nav class="navbar" id="navBar">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skill" class="nav-link">Skill</a>
+      <a href="#services" class="nav-link">My Services</a>
+      <a href="#project" class="nav-link">Project</a>
+      <a href="#contact" class="nav-link">Contact</a>
 
+      <!-- Indicator -->
+      <span class="indicator"></span>
+    </nav>
+  </header>
 
-
-   <section class="about" id="about">
-  <div class="container">
-    <div class="about-img">
-      <!-- You can add your image here -->
-      <!-- <img src="assets/about_background.PNG" alt="About Me Image"> -->
-    </div>
-
-    <div class="about-text">
-      <h2>About <span>Me</span></h2>
-      <h4>Full Stack Developer</h4>
+  <section class="home" id="home">
+    <div class="home-content">
+      <h3>Hello It's Me</h3>
+      <h1>Ranjeet Kumar</h1>
+      <h3>And I'm a <span class="text"></span></h3>
       <p>
-        I am an Android and iOS Developer skilled in creating modern, high-performance mobile applications with
-        seamless RESTful and GraphQL API integration.<br><br>
-        My expertise includes Kotlin, Swift, and Kotlin Multiplatform (KMP), allowing me to build both native
-        and cross-platform apps efficiently. I focus on writing clean, maintainable, and scalable code using
-        modern architecture patterns such as MVVM, Repository, and Dependency Injection (Hilt, Dagger, or
-        Koin).<br><br>
-        I specialize in connecting mobile applications with secure and efficient backend systems using Retrofit,
-        OkHttp, and Apollo GraphQL. My experience includes implementing authentication mechanisms like OAuth2
-        and JWT, ensuring data privacy and robust communication between client and server.<br><br>
+        I'm a Mobile Application Developer with extensive experience for over 3.5 years.
+        <br>Expert in creating Android, iOS, and web apps with maintenance, frontend, backend, and more...
       </p>
-      <a href="#" class="btn-box">More About Me</a>
+
+      <div class="home-sci">
+        <a href="https://www.linkedin.com/in/johndoe/" target="_blank" style="--i:8" title="LinkedIn">
+          <i class='bx bxl-linkedin'></i>
+        </a>
+        <a href="https://wa.me/15551234567" target="_blank" style="--i:9" title="WhatsApp">
+          <i class='bx bxl-whatsapp'></i>
+        </a>
+        <a href="https://github.com/KrRanjeetkr" target="_blank" style="--i:7" title="GitHub">
+          <i class='bx bxl-github'></i>
+        </a>
+      </div>
+
+      <a href="#about" class="btn-box">More About Me</a>
     </div>
-  </div>
-</section>
+
+    <span class="home-imghover"></span>
+  </section>
 
 
-    <section>
-        <div class="services" id="services">
-            <div class="container">
-                <h1 class="sub-title" id="services">My <span>Services</span></h1>
-                <div class="services-list">
-                    <div>
-                        <i class='bx bx-code' style='color:#00eeff'></i>
-                        <h2>UI And UX Design</h2>
-                        <p>Creative UI/UX Designer<br>crafting seamless, intuitive, and visually engaging digital
-                            experiences<br>that connect users with purpose.</p>
-                        <a href="#" class="read">Learn More</a>
-                    </div>
 
 
-                    <div>
-                        <i class='bx bx-crop' style='color:#00eeff'></i>
-                        <h2>UI And UX Design</h2>
-                        <p>Creative UI/UX Designer<br>crafting seamless, intuitive, and visually engaging digital
-                            experiences<br>that connect users with purpose.</p>
-                        <a href="#" class="read">Learn More</a>
-                    </div>
 
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-img">
+        <!-- You can add your image here -->
+        <!-- <img src="assets/about_background.PNG" alt="About Me Image"> -->
+      </div>
 
-                    <div>
-                        <i class='bx bxl-apple' style='color:#00eeff'></i>
-                        <h2>UI And UX Design</h2>
-                        <p>Creative UI/UX Designer<br>crafting seamless, intuitive, and visually engaging digital
-                            experiences<br>that connect users with purpose.</p>
-                        <a href="#" class="read">Learn More</a>
-                    </div>
+      <div class="about-text">
+        <h2>About <span>Me</span></h2>
+        <h4>Full Stack Developer</h4>
+        <p>
+          I am an Android and iOS Developer skilled in creating modern, high-performance mobile applications with
+          seamless RESTful and GraphQL API integration.<br><br>
+          My expertise includes Kotlin, Swift, and Kotlin Multiplatform (KMP), allowing me to build both native
+          and cross-platform apps efficiently. I focus on writing clean, maintainable, and scalable code using
+          modern architecture patterns such as MVVM, Repository, and Dependency Injection (Hilt, Dagger, or
+          Koin).<br><br>
+          I specialize in connecting mobile applications with secure and efficient backend systems using Retrofit,
+          OkHttp, and Apollo GraphQL. My experience includes implementing authentication mechanisms like OAuth2
+          and JWT, ensuring data privacy and robust communication between client and server.<br><br>
+        </p>
+        <a href="#" class="btn-box">More About Me</a>
+      </div>
+    </div>
+  </section>
 
-                </div>
-            </div>
-        </div>
-    </section>
+<h1 class="sub-title" id="skill" style="margin-top:-100px;">My <span>Skills</span></h1>
+  <section class="skills-section" style="margin-top:-100px;">
+    <div class="container skills-container">
+      <center>
+        <h1 class="heading1">Technical Skills</h1>
+      </center>
 
-    <h1 class="sub-title" id="skill">My <span>Skills</span></h1>
-    <section>
-        <div class="container1" id="skill">
-            <h1 class="heading1">Technical Skills</h1>
-            <div class="Technical-bars">
-                <div class="bar"><i style="color: #147bbc" class="bx bxl-html5"></i>
-                    <div class="info">
-                        <span>Java</span>
-                    </div>
-                    <div class="progress-line html">
-                        <span></span>
-                    </div>
-                </div>
-
-                 <div class="bar"><i style="color: #147bbc" class="bx bxl-html5"></i>
-                    <div class="info">
-                        <span>Kotlin</span>
-                    </div>
-                    <div class="progress-line kotlin">
-                        <span></span>
-                    </div>
-                </div>
-
-                 <div class="bar"><i style="color: #147bbc" class="bx bxl-html5"></i>
-                    <div class="info">
-                        <span>Dart</span>
-                    </div>
-                    <div class="progress-line dart">
-                        <span></span>
-                    </div>
-                </div>
-
-                 <div class="bar">
-                    <div class="info">
-                        <span>XML</span><i style="color: #147bbc" class="bx bxl-html5"></i>
-                    </div>
-                    <div class="progress-line XML">
-                        <span></span>
-                    </div>
-                </div>
-
-                 <div class="bar"><i style="color: #147bbc" class="bx bxl-html5"></i>
-                    <div class="info">
-                        <span>Jetpack Compose</span>
-                    </div>
-                    <div class="progress-line jetpack">
-                        <span></span>
-                    </div>
-                </div>
-
-                 <div class="bar"><i style="color: #147bbc" class="bx bxl-html5"></i>
-                    <div class="info">
-                        <span>Firebase</span>
-                    </div>
-                    <div class="progress-line html">
-                        <span></span>
-                    </div>
-                </div>
-
-                 <div class="bar"><i style="color: #147bbc" class="bx bxl-html5"></i>
-                    <div class="info">
-                        <span>Retrofit</span>
-                    </div>
-                    <div class="progress-line html">
-                        <span></span>
-                    </div>
-                </div>
-
-                 <div class="bar"><i style="color: #147bbc" class="bx bxl-html5"></i>
-                    <div class="info">
-                        <span>Git and Github</span>
-                    </div>
-                    <div class="progress-line html">
-                        <span></span>
-                    </div>
-                </div>
-
-                 <div class="bar"><i style="color: #147bbc" class="bx bxl-html5"></i>
-                    <div class="info">
-                        <span>Java</span>
-                    </div>
-                    <div class="progress-line html">
-                        <span></span>
-                    </div>
-                </div>
-
-                 <div class="bar"><i style="color: #147bbc" class="bx bxl-html5"></i>
-                    <div class="info">
-                        <span>Java</span>
-                    </div>
-                    <div class="progress-line html">
-                        <span></span>
-                    </div>
-                </div>
-            </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <i class='bx bxl-java' style="color:#147bbc"></i>
+          <h3>Java</h3>
         </div>
 
-        <div class="container1">
-            <h1 class="heading1">Professional Skills</h1>
-            <div class="radial-bars">
-                <svg x="0px" y="0px" viewBox="0 0 200 200">
-                    <circle class="progress-bar" cx="100" cy="100" r="80"></circle>
-                </svg>
-            </div>
+        <div class="skill-card">
+          <i class='bx bxl-kotlin' style="color:#147bbc"></i>
+          <h3>Kotlin</h3>
         </div>
-    </section>
-    <section class="contact" id="contact">
-  <div class="container contact-container">
-    <!-- <h1 class="sub-title">Get in <span>Touch</span></h1> -->
 
-  <!-- Chat Floating Icon + Chatbox -->
-<div class="chat-container">
-  <!-- Floating Chat Icon -->
-  <div class="chat-icon" id="chat-icon" title="Chat with me">
-    <img src="assets/message.png" alt="Chat Icon">
-  </div>
+        <div class="skill-card">
+          <i class='bx bxl-dart' style="color:#147bbc"></i>
+          <h3>Dart</h3>
+        </div>
 
-  <!-- Slide-in Chatbox -->
-  <div class="chatbox" id="chatbox">
-    <div class="chat-header">
-      <h3>Live Chat</h3>
-      <span id="close-chat" title="Close Chat">&times;</span>
+        <div class="skill-card">
+          <i class='bx bx-code-alt' style="color:#147bbc"></i>
+          <h3>XML</h3>
+        </div>
+
+        <div class="skill-card">
+          <i class='bx bx-mobile-alt' style="color:#147bbc"></i>
+          <h3>Jetpack Compose</h3>
+        </div>
+
+        <div class="skill-card">
+          <i class='bx bxs-data' style="color:#147bbc"></i>
+          <h3>Firebase</h3>
+        </div>
+
+        <div class="skill-card">
+          <i class='bx bx-transfer-alt' style="color:#147bbc"></i>
+          <h3>Retrofit</h3>
+        </div>
+
+        <div class="skill-card">
+          <i class='bx bxl-git' style="color:#147bbc"></i>
+          <h3>Git & Github</h3>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section style="margin-top:-100px;">
+    <div class="services" id="services">
+      <div class="container">
+        <h1 class="sub-title" id="services">My <span>Services</span></h1>
+        <div class="services-list">
+          <div>
+            <i class='bx bx-code' style='color:#00eeff'></i>
+            <h2>UI And UX Design</h2>
+            <p>Creative UI/UX Designer<br>crafting seamless, intuitive, and visually engaging digital
+              experiences<br>that connect users with purpose.</p>
+            <a href="#" class="read">Learn More</a>
+          </div>
+
+
+          <div>
+            <i class='bx bx-crop' style='color:#00eeff'></i>
+            <h2>UI And UX Design</h2>
+            <p>Creative UI/UX Designer<br>crafting seamless, intuitive, and visually engaging digital
+              experiences<br>that connect users with purpose.</p>
+            <a href="#" class="read">Learn More</a>
+          </div>
+
+
+          <div>
+            <i class='bx bxl-apple' style='color:#00eeff'></i>
+            <h2>UI And UX Design</h2>
+            <p>Creative UI/UX Designer<br>crafting seamless, intuitive, and visually engaging digital
+              experiences<br>that connect users with purpose.</p>
+            <a href="#" class="read">Learn More</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:-100px;">
+    <div class="services" id="services">
+      <div class="container">
+        <h1 class="sub-title" id="project">My <span>Projects</span></h1>
+        <div class="services-list">
+          <div>
+            <i class='bx bx-code' style='color:#00eeff'></i>
+            <h2>UI And UX Design</h2>
+            <p>Creative UI/UX Designer<br>crafting seamless, intuitive, and visually engaging digital
+              experiences<br>that connect users with purpose.</p>
+            <a href="#" class="read">Learn More</a>
+          </div>
+
+
+          <div>
+            <i class='bx bx-crop' style='color:#00eeff'></i>
+            <h2>UI And UX Design</h2>
+            <p>Creative UI/UX Designer<br>crafting seamless, intuitive, and visually engaging digital
+              experiences<br>that connect users with purpose.</p>
+            <a href="#" class="read">Learn More</a>
+          </div>
+
+
+          <div>
+            <i class='bx bxl-apple' style='color:#00eeff'></i>
+            <h2>UI And UX Design</h2>
+            <p>Creative UI/UX Designer<br>crafting seamless, intuitive, and visually engaging digital
+              experiences<br>that connect users with purpose.</p>
+            <a href="#" class="read">Learn More</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+  <body style="background:linear-gradient(180deg,#071022,#010409);min-height:100vh;color:#cbd5e1;padding:40px;">
+
+    <!-- Floating icon -->
+    <div class="chat-fab">
+      <button class="chat-btn" id="openChat" aria-label="Open chat">
+        <img src="assets/message.png" alt="message">
+        <!-- <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M21 6.5A4.5 4.5 0 0016.5 2h-9A4.5 4.5 0 003 6.5v11A4.5 4.5 0 007.5 22h6.25L21 23.75V6.5z'/></svg>" alt="chat">
+    </button> -->
     </div>
 
-    <div class="chat-window" id="chat-window">
-      <div class="chat-message bot">👋 Hi there! How can I help you today?</div>
-    </div>
+    <!-- Chat panel (hidden by default) -->
+    <div class="chat-panel" id="chatPanel" style="display:none;height:420px">
+      <div class="chat-header">
+        <div
+          style="width:50px;height:50px;background:#ffffff;border-radius:50%;padding:4px;overflow:hidden;display:flex;align-items:flex-start;justify-content:center;">
+          <img src="assets/ranjeet-removebg-preview.png" id="padding-top:-20px;" alt="ranjeet" class="img-fluid"
+            style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div>
+          <div class="title">Ask about my Android / iOS work</div>
+          <div class="subtitle">Quick replies — pick or type anything</div>
+        </div>
+        <button class="close" id="closeChat">✕</button>
+      </div>
 
-    <div class="chat-input">
-      <input type="text" id="user-input" placeholder="Type a message..." />
-      <button id="send-btn"><i class='bx bx-send'></i></button>
-    </div>
-  </div>
-</div>
+      <div class="chat-body">
+        <div class="messages" id="messages">
+          <!-- messages injected here -->
+        </div>
+      </div>
 
-
-
-  </div>
-</section>
-
-    <script src="main.js"></script>
-    <!-- Typed.js Script -->
+      <div class="chat-footer">
+        <input id="inputMsg" class="input" placeholder="Type a question (e.g. 'Do you build Android apps?')" />
+        <button id="sendBtn" class="send">Send</button>
+      </div>
+      <!-- <div class="meta">Tip: This chat uses simple keyword matching for instant answers. For custom behaviours, you can connect to a backend or a chatbot API.</div>
+  </div> -->
 <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 <script>
   var typed = new Typed(".text", {
@@ -280,104 +508,239 @@
     loop: true
   });
 </script>
-<script>
-  const chatIcon = document.getElementById('chat-icon');
-  const chatbox = document.getElementById('chatbox');
-  const closeChat = document.getElementById('close-chat');
-  const sendBtn = document.getElementById('send-btn');
-  const userInput = document.getElementById('user-input');
-  const chatWindow = document.getElementById('chat-window');
+      <script>
+        // ======= Canned knowledge base (editable) =======
+        const KB = [
+          { keys: ['android', 'kotlin', 'java', 'android studio'], reply: `Yes — I build Android apps using Kotlin and Java. I use Android Studio, Jetpack libraries (ViewModel, LiveData, Navigation), Retrofit for networking, and Google Maps when needed. Want to see my Android projects?` },
+          { keys: ['ios', 'swift', 'objective-c', 'xcode'], reply: `I build iOS apps using Swift and SwiftUI / UIKit, plus integration with CocoaPods or Swift Package Manager. I can handle app lifecycle, CoreData, MapKit, and push notifications. Would you like to view iOS samples?` },
+          { keys: ['flutter', 'cross', 'react native', 'kotlin multiplatform', 'kmp'], reply: `I also work with cross-platform tools like Flutter and Kotlin Multiplatform (KMP) to share business logic across Android and iOS. Tell me if you prefer a single codebase.` },
+          { keys: ['portfolio', 'projects', 'work', 'examples'], reply: `You can browse my portfolio to see apps, APKs, App Store links, code snippets, and short case studies describing the problem, my approach, and results.` },
+          { keys: ['contact', 'hire', 'freelance', 'work with you', 'price', 'rates'], reply: `Thanks for asking — I take freelance and full-time work. Please share project details (platform, timeline, budget) and I'll send a proposal. You can also email me at: techranjitad@gmail.com` },
+          { keys: ['map', 'google maps', 'location', 'gps', 'polyline'], reply: `I implement real-time location tracking, drawing polylines, and OSM integration. I can provide sample code (Android: FusedLocationProvider / LocationCallback; iOS: CLLocationManager) if you'd like.` },
+          { keys: ['resume', 'cv'], reply: `Sure — I can share my resume. Do you want a PDF version or a link to a live resume page?` },
+          { keys: ['help', 'hello', 'hi', 'hey'], reply: `Hi! I can answer questions about my Android and iOS skills, show projects, share code snippets, or explain how I'd approach your app idea. How can I help?` },
+        ];
 
-  // Toggle Chatbox visibility
-  chatIcon.addEventListener('click', () => {
-    chatbox.classList.toggle('active');
-  });
+        // fallback replies (with small variations)
+        const FALLBACKS = [
+          `Nice question — can you share a bit more detail (platform, goal, timeline)?`,
+          `I can help with that. Do you want a short answer, code snippet, or example app?`,
+          `I'm not sure I fully understand — you can ask like: "Do you build Android apps with Kotlin?"`
+        ];
 
-  closeChat.addEventListener('click', () => {
-    chatbox.classList.remove('active');
-  });
+        // quick chips shown on open
+        const QUICK = ['Do you build Android apps?', 'Do you build iOS apps?', 'Show portfolio', 'Contact / Hire', 'Real-time GPS tracking'];
 
-  // Send message & get response
-  sendBtn.addEventListener('click', sendMessage);
-  userInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
-  });
+        // ======= UI helpers =======
+        const openChat = document.getElementById('openChat');
+        const chatPanel = document.getElementById('chatPanel');
+        const closeChat = document.getElementById('closeChat');
+        const messages = document.getElementById('messages');
+        const input = document.getElementById('inputMsg');
+        const sendBtn = document.getElementById('sendBtn');
+        function scrollToBottom() {
+          const el = messages;
+          el.scrollTop = el.scrollHeight;
+        }
 
-  function sendMessage() {
-    const message = userInput.value.trim();
-    if (message === '') return;
+        function addMessage(text, who = 'bot') {
+          const el = document.createElement('div');
+          el.className = 'msg ' + (who === 'user' ? 'user' : 'bot');
+          el.innerText = text;
+          messages.appendChild(el);
 
-    // Append user message
-    const userMsg = document.createElement('div');
-    userMsg.className = 'chat-message user';
-    userMsg.textContent = message;
-    chatWindow.appendChild(userMsg);
-
-    userInput.value = '';
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-
-    // Simulated bot delay
-    setTimeout(() => {
-      const botMsg = document.createElement('div');
-      botMsg.className = 'chat-message bot';
-      botMsg.innerHTML = getBotResponse(message);
-      chatWindow.appendChild(botMsg);
-      chatWindow.scrollTop = chatWindow.scrollHeight;
-
-      // If response contains portfolio or contact info → show thank you + disable input
-      if (message.toLowerCase().includes('project') ||
-          message.toLowerCase().includes('contact') ||
-          message.toLowerCase().includes('email')) {
-
-        setTimeout(() => {
-          const thankMsg = document.createElement('div');
-          thankMsg.className = 'chat-message bot';
-          thankMsg.textContent = "🙏 Thank you for connecting! Have a great day!";
-          chatWindow.appendChild(thankMsg);
-          chatWindow.scrollTop = chatWindow.scrollHeight;
-
-          // Disable input after thank you
-          userInput.disabled = true;
-          userInput.placeholder = "Chat ended — refresh to start again.";
-          sendBtn.disabled = true;
-        }, 1500);
-      }
-    }, 700);
-  }
-
-  // ✅ Enhanced Bot Response Function
-  function getBotResponse(input) {
-    input = input.toLowerCase();
-
-    if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
-      return "👋 Hey there! How can I help you today?";
-    }
-
-    else if (input.includes('project')) {
-      return `📱 I’d love to share my work with you!  
-      <br><br>Check out my portfolio here:  
-      🔗 <a href="https://ranjeetkumar-portfolio.vercel.app" target="_blank" style="color:#00eeff;">My Portfolio</a>`;
-    }
-
-    else if (input.includes('contact') || input.includes('email')) {
-      return `📩 You can reach me anytime at:  
-      <br><a href="mailto:ranjeetkumar.dev@gmail.com" style="color:#00eeff;">ranjeetkumar.dev@gmail.com</a>  
-      <br><br>Also, connect with me on:  
-      🔗 <a href="https://www.linkedin.com/in/ranjeetkumar-dev/" target="_blank" style="color:#00eeff;">LinkedIn</a>`;
-    }
-
-    else if (input.includes('bye') || input.includes('goodbye')) {
-      return "👋 Goodbye! It was great chatting with you.";
-    }
-
-    else {
-      return "🤔 I’m not sure I understand. You can ask about my projects or contact info.";
-    }
-  }
-</script>
+          // force bottom after element is added
+          requestAnimationFrame(scrollToBottom);
+        }
 
 
 
-</body>
+
+        function addQuickChips() {
+          const container = document.createElement('div');
+          container.className = 'quick';
+
+          QUICK.forEach(q => {
+            const c = document.createElement('button');
+            c.className = 'chip';
+            c.innerText = q;
+            c.onclick = () => handleUserMessage(q);
+            container.appendChild(c);
+          });
+
+          messages.appendChild(container);
+
+          requestAnimationFrame(scrollToBottom);
+        }
+
+
+
+
+        // very simple keyword matcher (case-insensitive)
+        function findReply(text) {
+          const txt = text.toLowerCase();
+          for (const item of KB) {
+            for (const k of item.keys) {
+              if (txt.includes(k)) return item.reply;
+            }
+          }
+          // fallback variations
+          return FALLBACKS[Math.floor(Math.random() * FALLBACKS.length)];
+        }
+
+        // main handler
+        function handleUserMessage(text) {
+          if (!text || !text.trim()) return;
+          addMessage(text, 'user');
+          input.value = '';
+
+          // small "thinking" delay for UX
+          setTimeout(() => {
+            const reply = findReply(text);
+            addMessage(reply, 'bot');
+          }, 350);
+        }
+
+        // open/close
+        openChat.addEventListener('click', () => {
+          chatPanel.style.display = 'flex';
+          openChat.style.display = 'none';
+          // greet
+          messages.innerHTML = '';
+          addMessage('Hello! I am an Android & iOS developer assistant. Ask me about projects, tech stack, or hiring.');
+          addQuickChips();
+        });
+        closeChat.addEventListener('click', () => {
+          chatPanel.style.display = 'none';
+          openChat.style.display = 'flex';
+        });
+
+        // send
+        sendBtn.addEventListener('click', () => handleUserMessage(input.value));
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleUserMessage(input.value); });
+
+        // Optional: expose method to add custom QA (for admin integration)
+        window.Chatbox = {
+          addQA: function (keysCommaSeparated, reply) {
+            const keys = keysCommaSeparated.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+            if (!keys.length || !reply) return false;
+            KB.unshift({ keys, reply });
+            return true;
+          }
+        };
+
+        // Example: Chatbox.addQA('unit testing, junit', 'I write unit tests using JUnit, Mockito for Android...');
+      </script>
+      <script>
+        const navLinks = document.querySelectorAll(".nav-link");
+        const indicator = document.querySelector(".indicator");
+
+        function moveIndicator(element) {
+          const rect = element.getBoundingClientRect();
+          const parentRect = element.parentElement.getBoundingClientRect();
+          const width = rect.width;
+          const left = rect.left - parentRect.left;
+
+          indicator.style.width = width + "px";
+          indicator.style.left = left + "px";
+        }
+
+        // Set default position on load
+        const activeLink = document.querySelector(".nav-link.active");
+        if (activeLink) moveIndicator(activeLink);
+
+        // On click switching
+        navLinks.forEach(link => {
+          link.addEventListener("click", () => {
+            navLinks.forEach(l => l.classList.remove("active"));
+            link.classList.add("active");
+            moveIndicator(link);
+          });
+        });
+      </script>
+      <script>
+        document.addEventListener("click", function (e) {
+
+          const colors = [
+            "#ff0077", "#ff8c00", "#ffd300", "#00eaff",
+            "#00ff88", "#8a2be2", "#ff00ff", "#00bfff"
+          ];
+
+          for (let i = 0; i < 14; i++) {
+            const bubble = document.createElement("span");
+            bubble.classList.add("click-bubble");
+
+            // random color
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            bubble.style.background = randomColor;
+            bubble.style.boxShadow = `0 0 12px ${randomColor}`;
+
+            // Random explosion angle
+            const angle = Math.random() * 2 * Math.PI;
+            const radius = 90;
+
+            const x = Math.cos(angle) * radius;
+            const y = Math.sin(angle) * radius;
+
+            bubble.style.left = e.clientX + "px";
+            bubble.style.top = e.clientY + "px";
+
+            bubble.style.setProperty("--dx", x + "px");
+            bubble.style.setProperty("--dy", y + "px");
+
+            document.body.appendChild(bubble);
+
+            setTimeout(() => bubble.remove(), 900);
+          }
+        });
+      </script>
+      <script>
+        document.getElementById("logoBtn").addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const rect = this.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+
+          const colors = [
+            "#ff005e", "#ff8b00", "#00f7ff",
+            "#b300ff", "#00ff87", "#ff00f2"
+          ];
+
+          for (let i = 0; i < 20; i++) {
+            const p = document.createElement("span");
+            p.classList.add("logo-gravity");
+
+            const col = colors[Math.floor(Math.random() * colors.length)];
+            p.style.background = col;
+            p.style.boxShadow = `0 0 10px ${col}`;
+
+            // particle starting point (random)
+            const angle = Math.random() * 2 * Math.PI;
+            const radius = 120;
+
+            const startX = cx + Math.cos(angle) * radius;
+            const startY = cy + Math.sin(angle) * radius;
+
+            // particle end point = logo center
+            p.style.left = startX + "px";
+            p.style.top = startY + "px";
+
+            const dx = (cx - startX);
+            const dy = (cy - startY);
+
+            p.style.setProperty("--dx", dx + "px");
+            p.style.setProperty("--dy", dy + "px");
+
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 800);
+          }
+        });
+      </script>
+
+
+
+
+  </body>
 
 </html>
