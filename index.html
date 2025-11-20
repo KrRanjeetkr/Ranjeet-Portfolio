@@ -253,6 +253,58 @@
      html {
     scroll-behavior: smooth;
   }
+  :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#06b6d4; --glass: rgba(255,255,255,0.04);
+      --radius:14px; --gap:20px; font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#071022);color:#e6eef6}
+    .wrap{max-width:1080px;margin:48px auto;padding:28px}
+
+    .contact-card{background:linear-gradient(180deg,var(--card), rgba(9,14,23,0.6));border-radius:var(--radius);box-shadow:0 8px 30px rgba(2,6,23,0.6);padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);align-items:start}
+
+    @media (max-width:880px){.contact-card{grid-template-columns:1fr}}
+
+    .left{padding:6px 12px}
+    .eyebrow{font-size:13px;color:var(--accent);font-weight:600;letter-spacing:0.6px}
+    h2{margin:8px 0 12px;font-size:28px}
+    p.lead{color:var(--muted);margin:0 0 18px;line-height:1.5}
+
+    .info-list{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+    .info-item{display:flex;gap:12px;align-items:center}
+    .icon-wrap{width:44px;height:44px;border-radius:10px;background:var(--glass);display:inline-grid;place-items:center}
+    .info-text{font-size:14px;color:#dbe8f5}
+    .info-sub{font-size:13px;color:var(--muted)}
+
+    /* Form styles */
+    form{display:flex;flex-direction:column;gap:12px}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media (max-width:520px){.field-row{grid-template-columns:1fr}}
+    label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+    input,textarea,button,select{font-family:inherit}
+    input,textarea{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);padding:12px 14px;border-radius:10px;color:var(--muted);outline:none}
+    input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 4px 16px rgba(6,182,212,0.08)}
+    textarea{min-height:140px;resize:vertical}
+    .hint{font-size:12px;color:var(--muted)}
+
+    .submit-row{display:flex;gap:12px;align-items:center}
+    .btn{background:linear-gradient(90deg,var(--accent),#3b82f6);border:none;padding:12px 16px;border-radius:10px;color:#04202a;font-weight:700;cursor:pointer}
+    .btn:disabled{opacity:0.6;cursor:not-allowed}
+
+    .status{font-size:13px;color:var(--muted)}
+
+    /* small helper */
+    .muted{color:var(--muted)}
+    a.inline{color:var(--accent);text-decoration:none}
+    /* Animations */
+    @keyframes fadeUp{0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
+    @keyframes slideIn{0%{opacity:0;transform:translateX(40px);}100%{opacity:1;transform:translateX(0);} }
+    @keyframes glowPulse{0%{box-shadow:0 0 0 rgba(6,182,212,0);}50%{box-shadow:0 0 18px rgba(6,182,212,0.3);}100%{box-shadow:0 0 0 rgba(6,182,212,0);} }
+
+    .contact-card{animation:fadeUp 0.9s ease forwards;}
+    .left{animation:slideIn 0.9s ease forwards;}
+    .right{animation:slideIn 0.9s ease 0.15s forwards;}
+    .btn:hover{animation:glowPulse 1.4s infinite ease-in-out;}
   </style>
 
 
@@ -261,53 +313,51 @@
 
 <body>
 
-  <header class="header">
-    <a href="#" class="logo" id="logoBtn">Portfolio</a>
+  <header class="header" style="padding-bottom:-40px;">
+  <a href="#" class="logo" id="logoBtn">Portfolio</a>
 
+  <!-- Hamburger -->
+  <div class="menu-icon" id="menuIcon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-    <nav class="navbar" id="navBar">
-      <a href="#home" class="nav-link active">Home</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#skill" class="nav-link">Skill</a>
-      <a href="#services" class="nav-link">My Services</a>
-      <a href="#project" class="nav-link">Project</a>
-      <a href="#contact" class="nav-link">Contact</a>
+  <nav class="navbar" id="navBar">
+    <a href="#home" class="nav-link active">Home</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#skill" class="nav-link">Skill</a>
+    <a href="#services" class="nav-link">My Services</a>
+    <a href="#project" class="nav-link">Project</a>
+    <a href="#contact" class="nav-link">Contact</a>
 
-      <!-- Indicator -->
-      <span class="indicator"></span>
-    </nav>
-  </header>
+    <span class="indicator"></span>
+  </nav>
+</header>
 
   <section class="home" id="home">
-    <div class="home-content">
-      <h3>Hello It's Me</h3>
-      <h1>Ranjeet Kumar</h1>
-      <h3>And I'm a <span class="text"></span></h3>
-      <p>
-        I'm a Mobile Application Developer with extensive experience for over 3.5 years.
-        <br>Expert in creating Android, iOS, and web apps with maintenance, frontend, backend, and more...
+  <div class="home-content">
+      <h3 class="intro">Hello, It's Me</h3>
+      <h1 class="name-title">Ranjeet Kumar</h1>
+      <h3 class="role">And I'm a <span class="text"></span></h3>
+
+      <p class="home-description">
+        I'm a Mobile Application Developer with <strong>3.5+ years</strong> of experience 
+        building high-performance Android, iOS, and Web applications.  
+        I specialize in UI/UX-optimized apps, scalable architecture, and end-to-end product development.
       </p>
 
       <div class="home-sci">
-        <a href="https://www.linkedin.com/in/johndoe/" target="_blank" style="--i:8" title="LinkedIn">
-          <i class='bx bxl-linkedin'></i>
-        </a>
-        <a href="https://wa.me/15551234567" target="_blank" style="--i:9" title="WhatsApp">
-          <i class='bx bxl-whatsapp'></i>
-        </a>
-        <a href="https://github.com/KrRanjeetkr" target="_blank" style="--i:7" title="GitHub">
-          <i class='bx bxl-github'></i>
-        </a>
+        <a href="https://www.linkedin.com/in/ranjeet-android-ios/" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+        <a href="https://wa.me/6203381713" target="_blank" title="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
+        <a href="https://github.com/KrRanjeetkr" target="_blank" title="GitHub"><i class='bx bxl-github'></i></a>
       </div>
 
       <a href="#about" class="btn-box">More About Me</a>
-    </div>
+  </div>
 
-    <span class="home-imghover"></span>
-  </section>
-
-
-
+  <div class="home-image"></div>
+</section>
 
 
   <section class="about" id="about">
@@ -458,8 +508,78 @@
       </div>
     </div>
   </section>
-  
 
+  <div class="wrap">
+    <section class="contact-card" aria-label="Get in touch" id="contact">
+      <div class="left">
+        <div class="eyebrow">Get in touch</div>
+        <h2>Let’s build powerful web & mobile experiences together</h2>
+        <p class="lead">If you have a project, collaboration, or just want to say hi — drop a message. I specialize in building high‑performance web and mobile applications with clean architecture, scalable systems, and seamless user experiences. Whether it's a full‑stack web platform or a feature‑rich Android/iOS app, I deliver modern, reliable and production‑ready solutions. Feel free to reach out - I usually respond within a day.</p>
+
+        <div class="info-list" aria-hidden="false">
+          <div class="info-item">
+            <div class="icon-wrap" aria-hidden="true">📧</div>
+            <div>
+              <div class="info-text">Email</div>
+              <div class="info-sub">techranjitad@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="icon-wrap" aria-hidden="true">📍</div>
+            <div>
+              <div class="info-text">Location</div>
+              <div class="info-sub">Laxmi Nagar, New Delhi</div>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="icon-wrap" aria-hidden="true">💼</div>
+            <div>
+              <div class="info-text">Services</div>
+              <div class="info-sub">Full‑Stack Development · Android · iOS · Backend APIs · SaaS · UI/UX · Deployment</div>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:18px;font-size:13px;color:var(--muted);">Prefer scheduling? <a class="inline" href="#" id="scheduleLink">Book a 20-min call</a>.</p>
+      </div>
+
+      <div class="right" style="padding:6px 12px">
+        <!-- Replace FORM_ENDPOINT with your form provider endpoint (Formspree / Netlify / custom) -->
+        <form id="contactForm" novalidate>
+          <div class="field-row">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your full name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@domain.com" required />
+            </div>
+          </div>
+
+          <div>
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" placeholder="Project, role or short note" />
+          </div>
+
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project, timeline and budget (if any)" required></textarea>
+            <div class="hint">Tip: include a budget range and timeline for faster responses.</div>
+          </div>
+
+          <div class="submit-row">
+            <button class="btn" type="submit" id="submitBtn">Send message</button>
+            <div class="status" id="statusText"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <p style="text-align:center;margin-top:18px;color:var(--muted);font-size:13px">© <span id="year"></span> Ranjit • Design with me</p>
+  </div>
 
   <body style="background:linear-gradient(180deg,#071022,#010409);min-height:100vh;color:#cbd5e1;padding:40px;">
 
@@ -476,7 +596,7 @@
       <div class="chat-header">
         <div
           style="width:50px;height:50px;background:#ffffff;border-radius:50%;padding:4px;overflow:hidden;display:flex;align-items:flex-start;justify-content:center;">
-          <img src="assets/ranjeet-removebg-preview.png" id="padding-top:-20px;" alt="ranjeet" class="img-fluid"
+          <img src="assets/chatimg-Photoroom.png" id="padding-top:-20px;" alt="ranjeet" class="img-fluid"
             style="width:100%;height:100%;object-fit:cover;" />
         </div>
         <div>
@@ -553,9 +673,6 @@
           requestAnimationFrame(scrollToBottom);
         }
 
-
-
-
         function addQuickChips() {
           const container = document.createElement('div');
           container.className = 'quick';
@@ -572,9 +689,6 @@
 
           requestAnimationFrame(scrollToBottom);
         }
-
-
-
 
         // very simple keyword matcher (case-insensitive)
         function findReply(text) {
@@ -737,10 +851,88 @@
           }
         });
       </script>
+      <script>
+    // --- Configuration: set YOUR form endpoint here ---
+    const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'; // <-- replace with your endpoint
 
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    // optional schedule link behaviour
+    document.getElementById('scheduleLink').addEventListener('click', function(e){
+      e.preventDefault();
+      // example: open Calendly (replace with your link)
+      window.open('https://calendly.com/yourhandle/20min','_blank');
+    });
 
+    // Form handling — uses fetch; will work with Formspree or your JSON endpoint
+    const form = document.getElementById('contactForm');
+    const statusText = document.getElementById('statusText');
+    const submitBtn = document.getElementById('submitBtn');
 
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+
+      // basic validation
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if(!name || !email || !message){
+        statusText.textContent = 'Please fill required fields.'; return;
+      }
+
+      submitBtn.disabled = true; statusText.textContent = 'Sending...';
+
+      try{
+        const payload = new FormData(form);
+        // If your endpoint expects JSON, convert and set headers accordingly.
+        const response = await fetch(FORM_ENDPOINT, {method:'POST', body:payload});
+        if(response.ok){
+          statusText.textContent = 'Message sent — thank you!';
+          form.reset();
+        } else {
+          // try to parse error
+          statusText.textContent = 'Failed to send. Please try again or email hello@yourdomain.com';
+        }
+      }catch(err){
+        console.error(err);
+        statusText.textContent = 'Network error — try again later.';
+      } finally{ submitBtn.disabled = false; }
+    });
+  </script>
+  <script>
+const menuIcon = document.getElementById("menuIcon");
+const navBar = document.getElementById("navBar");
+
+menuIcon.addEventListener("click", () => {
+  menuIcon.classList.toggle("active");
+  navBar.classList.toggle("active");
+});
+
+// Active Link Indicator (Desktop Only)
+const links = document.querySelectorAll(".nav-link");
+const indicator = document.querySelector(".indicator");
+</script>
+<script>
+function moveIndicator(el) {
+  const rect = el.getBoundingClientRect();
+  indicator.style.width = `${rect.width}px`;
+  indicator.style.left = `${el.offsetLeft}px`;
+}
+
+links.forEach((link) => {
+  link.addEventListener("click", () => {
+    document.querySelector(".nav-link.active").classList.remove("active");
+    link.classList.add("active");
+    moveIndicator(link);
+  });
+});
+
+// Initial Position
+window.addEventListener("load", () => {
+  const activeLink = document.querySelector(".nav-link.active");
+  moveIndicator(activeLink);
+});
+</script>
   </body>
 
 </html>

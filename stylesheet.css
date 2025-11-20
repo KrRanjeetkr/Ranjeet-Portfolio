@@ -56,7 +56,7 @@ body {
     width: 100%;
     justify-content: space-between;
     height: 100vh;
-    background: url(assets/home_background.PNG) no-repeat;
+    /* background: url(assets/temp_ranjit.png) no-repeat; */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -612,6 +612,110 @@ body {
   }
 }
 
+/* Header Base */
+.header {
+  width: 100%;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Desktop Navbar */
+.navbar {
+  display: flex;
+  gap: 25px;
+  position: relative;
+}
+
+.navbar a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 6px 10px;
+  position: relative;
+}
+
+.navbar a.active,
+.navbar a:hover {
+  color: #00f0ff;
+}
+
+/* Indicator */
+.indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 90px;
+  height: 3px;
+  background: #00f0ff;
+  transition: 0.3s ease;
+}
+
+/* Hamburger */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-icon span {
+  width: 28px;
+  height: 3px;
+  background: #fff;
+  transition: 0.4s;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: flex;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100vh;
+    background: #111;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: 0.4s ease;
+  }
+
+  .navbar.active {
+    right: 0;
+  }
+
+  .indicator {
+    display: none;
+  }
+}
+
+/* Hamburger Animation */
+.menu-icon.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-icon.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-icon.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
 
 
 
