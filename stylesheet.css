@@ -197,13 +197,17 @@ body {
 .sub-title{
     text-align: center;
     font-size: 60px;
-    padding-bottom: 70px;
+    padding-bottom: 30px;
 }
 .sub-title span{
     color: #0ef;
 }
 .container{
-    padding: 90px;
+  padding: 90px;
+    /* padding-top: 90px;
+    padding-left: 90px;
+    padding-right: 90px;
+    padding-bottom: 50px; */
 }
 .services-list {
     display: grid;
