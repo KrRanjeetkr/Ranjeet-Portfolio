@@ -23,6 +23,8 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <style>
     :root {
       --bg: #0f1724;
@@ -311,7 +313,7 @@
 
 <body>
 
-  <header class="header" style="padding-bottom:-40px;">
+  <header class="header" style="padding-bottom:-20px;">
   <a href="#" class="logo" id="logoBtn">Portfolio</a>
 
   <!-- Hamburger -->
@@ -332,57 +334,89 @@
     <span class="indicator"></span>
   </nav>
 </header>
+  <section class="home py-5" id="home">
+  <div class="container">
+    <div class="row align-items-center">
 
-  <section class="home" id="home">
-  <div class="home-content">
-      <h3 class="intro">Hello, It's Me</h3>
-      <h1 class="name-title">Ranjeet Kumar</h1>
-      <h3 class="role">And I'm a <span class="text"></span></h3>
+      <!-- LEFT CONTENT -->
+      <div class="col-lg-6 col-md-7">
+        <h3 class="intro">Hello, It's Me</h3>
+        <h1 class="name-title">Ranjeet Kumar</h1>
+        <h3 class="role">
+          And I'm a <span class="text"></span>
+        </h3>
 
-      <p class="home-description">
-        I'm a Mobile Application Developer with <strong>3.5+ years</strong> of experience 
-        building high-performance Android, iOS, and Web applications.  
-        I specialize in UI/UX-optimized apps, scalable architecture, and end-to-end product development.
-      </p>
+        <p class="home-description mt-3">
+          I'm a Mobile Application Developer with <strong>3.5+ years</strong> of experience 
+          building high-performance Android, iOS, and Web applications.
+          I specialize in UI/UX-optimized apps, scalable architecture, and 
+          end-to-end product development.
+        </p>
 
-      <div class="home-sci">
-        <a href="https://www.linkedin.com/in/ranjeet-android-ios/" target="_blank" title="LinkedIn"><i class='bx bxl-linkedin'></i></a>
-        <a href="https://wa.me/6203381713" target="_blank" title="WhatsApp"><i class='bx bxl-whatsapp'></i></a>
-        <a href="https://github.com/KrRanjeetkr" target="_blank" title="GitHub"><i class='bx bxl-github'></i></a>
+        <div class="home-sci mt-4">
+          <a href="https://www.linkedin.com/in/ranjeet-android-ios/" target="_blank" title="LinkedIn">
+            <i class='bx bxl-linkedin'></i>
+          </a>
+          <a href="https://wa.me/6203381713" target="_blank" title="WhatsApp">
+            <i class='bx bxl-whatsapp'></i>
+          </a>
+          <a href="https://github.com/KrRanjeetkr" target="_blank" title="GitHub">
+            <i class='bx bxl-github'></i>
+          </a>
+        </div>
+
+        <a href="#about" class="btn-box mt-4">More About Me</a>
       </div>
 
-      <a href="#about" class="btn-box">More About Me</a>
-  </div>
+      <!-- RIGHT IMAGE -->
+      <div class="col-lg-6 col-md-5 text-center mt-4 mt-md-0">
+        <div class="home-image">
+          <!-- Yaha apna image add karo -->
+          <!-- Example: <img src="assets/my-photo.png" class="img-fluid rounded-circle"> -->
+        </div>
+      </div>
 
-  <div class="home-image"></div>
+    </div>
+  </div>
 </section>
 
+<div style="margin-left:70px;">
+  <section class="about py-5" id="about" >
+  <div class="container" style="margin-left:20px;">
+    <div class="row align-items-start">
+      <div class="col-lg-12">
 
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about-img">
-        <!-- You can add your image here -->
-        <!-- <img src="assets/about_background.PNG" alt="About Me Image"> -->
-      </div>
+        <div class="about-text">
+          <h2 class="mb-3">About <span>Me</span></h2>
+          <h4 class="mb-4">Full Stack Developer</h4>
 
-      <div class="about-text">
-        <h2>About <span>Me</span></h2>
-        <h4>Full Stack Developer</h4>
-        <p>
-          I am an Android and iOS Developer skilled in creating modern, high-performance mobile applications with
-          seamless RESTful and GraphQL API integration.<br><br>
-          My expertise includes Kotlin, Swift, and Kotlin Multiplatform (KMP), allowing me to build both native
-          and cross-platform apps efficiently. I focus on writing clean, maintainable, and scalable code using
-          modern architecture patterns such as MVVM, Repository, and Dependency Injection (Hilt, Dagger, or
-          Koin).<br><br>
-          I specialize in connecting mobile applications with secure and efficient backend systems using Retrofit,
-          OkHttp, and Apollo GraphQL. My experience includes implementing authentication mechanisms like OAuth2
-          and JWT, ensuring data privacy and robust communication between client and server.<br><br>
-        </p>
-        <a href="#" class="btn-box">More About Me</a>
+          <p class="mb-4">
+            I am an Android and iOS Developer skilled in creating modern, high-performance mobile applications with
+            seamless RESTful and GraphQL API integration.<br><br>
+
+            My expertise includes Kotlin, Swift, and Kotlin Multiplatform (KMP), allowing me to build both native
+            and cross-platform apps efficiently. I focus on writing clean, maintainable, and scalable code using
+            modern architecture patterns such as MVVM, Repository, and Dependency Injection (Hilt, Dagger, or
+            Koin).<br><br>
+
+            I specialize in connecting mobile applications with secure and efficient backend systems using Retrofit,
+            OkHttp, and Apollo GraphQL. My experience includes implementing authentication mechanisms like OAuth2
+            and JWT, ensuring data privacy and robust communication between client and server.<br><br>
+          </p>
+
+          <a href="#home" class="btn-box">More About Me</a>
+        </div>
+
       </div>
     </div>
-  </section>
+  </div>
+</section>
+</div>
+
+
+
+
+
 
 <!-- <h1 class="sub-title" id="skill" style="margin-top:-100px;">My <span>Skills</span></h1> -->
   <section class="skills-section" style="margin-top:-100px;">
@@ -546,6 +580,205 @@
     </div>
   </section>
 
+
+<section class="py-5 bg-dark" id="work">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="text-white fw-bold display-5">Featured Work</h2>
+            <p class="text-secondary fs-5">
+                A collection of projects that showcase my skills and passion for creating exceptional digital experiences.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card bg-secondary border-0 rounded-4 overflow-hidden shadow project-card">
+                    <div class="overflow-hidden position-relative">
+                        <img src="data:image/jpeg;base64,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"
+                             class="card-img-top project-img" alt="Staff Management System">
+
+                        <button class="btn btn-light position-absolute bottom-0 start-50 translate-middle-x mb-3 px-4 py-2 rounded-pill"
+                                data-bs-toggle="modal" data-bs-target="#project1Modal">
+                            View Project
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <span class="badge bg-primary mb-2">App Development</span>
+                        <h5 class="text-white fw-bold">Staff Management System – HR Made Simple</h5>
+                        <p class="text-light small">
+                            A powerful all-in-one platform to manage onboarding, offboarding, roles, staff and training.
+                        </p>
+
+                        <div>
+                            <span class="badge bg-dark">React-native</span>
+                            <span class="badge bg-dark">Next.js</span>
+                            <span class="badge bg-dark">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card bg-secondary border-0 rounded-4 overflow-hidden shadow project-card">
+                    <div class="overflow-hidden position-relative">
+                        <img src="data:image/jpeg;base64,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"
+                             class="card-img-top project-img" alt="OnsGemak">
+
+                        <button class="btn btn-light position-absolute bottom-0 start-50 translate-middle-x mb-3 px-4 py-2 rounded-pill"
+                                data-bs-toggle="modal" data-bs-target="#project2Modal">
+                            View Project
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <span class="badge bg-primary mb-2">App Development</span>
+                        <h5 class="text-white fw-bold">OnsGemak - AI based bill processing app</h5>
+                        <p class="text-light small">
+                            AI-powered billing automation for businesses—upload invoice images and extract key data instantly.
+                        </p>
+
+                        <div>
+                            <span class="badge bg-dark">React-native</span>
+                            <span class="badge bg-dark">i18next</span>
+                            <span class="badge bg-dark">sharing-intent</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card bg-secondary border-0 rounded-4 overflow-hidden shadow project-card">
+                    <div class="overflow-hidden position-relative">
+                        <img src="data:image/jpeg;base64,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"
+                             class="card-img-top project-img" alt="RoadAlertSystem">
+
+                        <button class="btn btn-light position-absolute bottom-0 start-50 translate-middle-x mb-3 px-4 py-2 rounded-pill"
+                                data-bs-toggle="modal" data-bs-target="#project3Modal">
+                            View Project
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <span class="badge bg-primary mb-2">App Development</span>
+                        <h5 class="text-white fw-bold">RoadAlertSystem - real-time incident reporting</h5>
+                        <p class="text-light small">
+                            A real-time incident reporting system for drivers with map integration.
+                        </p>
+
+                        <div>
+                            <span class="badge bg-dark">React-native</span>
+                            <span class="badge bg-dark">Google Map</span>
+                            <span class="badge bg-dark">Redux</span>
+                            <span class="badge bg-dark">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- MODAL 1 -->
+<div class="modal fade" id="project1Modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content bg-dark text-white rounded-4">
+
+      <!-- Header -->
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold">Staff Management System</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body text-center">
+
+        <img src="data:image/jpeg;base64,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" 
+             class="img-fluid rounded mb-3 modal-img" width="100%">
+
+        <p class="text-secondary small">
+          A powerful all-in-one roles, and staff profiles, and share mobile app credentials directly with employees—no messy self-registrations, no security risks. HR Managers can onboard new hires, assign and track training, send policy updates, manage leave requests, handle resignations, and schedule shifts—all in one place. Employees get a clean mobile experience with instant notifications, easy access to policies, and real-time rota updates. Whether you have one office or a global network, the Staff Management System keeps everything organized, connected, and compliant—so your team can focus on doing their best work.
+        </p>
+
+      </div>
+
+      <!-- Footer -->
+      <!-- <div class="modal-footer border-0 justify-content-center">
+        <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Close</button>
+      </div> -->
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- MODAL 2 -->
+<div class="modal fade" id="project2Modal" tabindex="-2">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content bg-dark text-white rounded-4">
+
+      <!-- Header -->
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold">Staff Management System</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body text-center">
+
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIALcAwgMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABAIDBQYHAQj/xABMEAABAwIBBQkNBQYDCQAAAAABAAIDBBEFBhIhMVETFDIzQXGRsdEHFRYiUlRhcnOBkqHBQlOTovAjNGKCsuE1wvEXJCU2VWN0lNL/xAAaAQEAAgMBAAAAAAAAAAAAAAAABAYBAgUD/8QAMREAAgEDAgMECgIDAAAAAAAAAAECAwQREjEFIVETUpHRFBUiMkFhcaGxwYHxBiQ0/9oADAMBAAIRAxEAPwDEoiKcUQIiIAiIgCIiAIiIAiIgCIiAIiIAiiVmKUNG/MqqhjH+TrPyUbwhwnzsfCexa6ke0batJZUX4GURYvwhwnzsfCexPCHCfOx8J7E1x6m3otfuPwMoixfhDhPnY+E9ieEOE+dj4T2Jrj1HotfuPwMoixfhDhPnY+E9ieEOE+dj4T2Jrj1HotfuPwMoixfhDhPnY+E9i8TXHqPRa/cfgZVFRLKyFt3G/oUffzb+LG6y0nXpweJM9KFhc3C1U4NolorMdVHIQDdpOoFXltCpGazFnjWt6tCWmpHDCIi3PEIiIAiIgCIiAIiIAiIsMyjmktLU1s0s4s4ue4lxPKqe9dV5LOlZOg4h3tHdakqEXdPCMF3rqvJb0p3rqvJb0rOohnUYLvZVeS34gneuq8lvxBZ1EMajBd66ryW/EE72VXkt+ILOog1GB72VXkt+IL1Z1EGo22hoJcaxqKije5ocfHdrzWjhHnXQ5MksGdQ723oAQLCVpO6X235ebUrOTuTYwbF6ydsu6RyRN3NzhpFyS4fIdK2NcK4rOc20zrW1FUqMaa+COU4vklitBM5sUD6uAm7JIWl2jYW8hUSnE0TDBVMkilZrbIwtd77hdhWi5clvfaEDhNgGd0n9e9S+HVpOsonL49ThKzcnumsGuoiKwFFCIiAIiIAiIgCIiAIiIwjRaDiHe0d1qSo1BxDvaO61JUJl3CIh1aFgBFLq6Ixsp5IS6Zk0dwc37XKPcrElPPG3OlgkjbtcwgdSHnCrCSymW0UmupN6bixxvM5mdIy1szYOhRkMwmpx1R2CIiG59C0FUyuooaqNrgyRtwHWuFIUDABbBKIf9lp6RdT1XKiSm0up2beTnSjKW7SC5ljlZv8AxWpnafFzs1nqjR/db7jlc3DsNnmc79oQWRja4jR2rmeoWGpdfhVLeo/oVr/I7n3aKfzf6CIi7RVAiIgCIiAIiIAiIgCIiwzKNFoOJPtHdakqNQcSfaO61J16FDZdgpOHUcldVRwNObnaXHyW8qrwrDpcSmLIyGsYLueRe2xZ3BMOmw+sqQ9gluxua8HNFrn6hYIF5ewpQlGL9tLYy1HTxUcYp4WODWi+d5R7dHzV/wB1/RZW8+X7n84TPk+5/OEKfPVJ6nv9TBZQ4Y2WJ2I04cHEB0jHHSRbXbataXQJi58T2PgcWuaQdLdXStSOBVgoN8uEfBz8wnSG21oWPhd6lT0VpLk8Ln9jGIvc1wRDuZR9CxBrYWBgsIxYN9Cq3bRwVBpKuo3y+OppXRxk2ZI1weHc9tSl2aXEu4IXJvraUK70rk9jqWdeMqPtPY1TukTto8PpKyW7o2zCOTToYHA6SOcDpWn01bTVbb09RG8bGuBPQtsy/pqzFcmsVzrRU8cJlaxwu55ZZ1/Rq/XJwAHNcOQhdmnB29OMPkV67sqd5UlVzhnWkXNaXGsRpbCKrkzR9lxzh81uWTWLvxWnlE+bu8btOaLAt5PqveNVSeDjXPDKlCDnnKMwiIvQ5wREQBEVUbHSSNYwXc4gAbSjeDKWXgrpaeWqqI6eFmfK92a0fUquuo30NZLSylpfGdbTfkB6it6wLA2YXCX3D6tzbOeRob6AP1dW48l6V0z6iumlqpHuu7TmtvzDT81ynxKmpvovuWGPAazox7z+fJLzNFhhmnk3OGF8rrXzY2klJ4pIJXRTtcyRhsWuFiCt1xfG6XCI3UeHRxGccjWgMZz21n0dK0maV88r5ZXl8jjcuJvcqXb1p1faccL4dTnXltRtmoRnql8eiNCoOJPtHdakqPQ8S72jutSF5lmNiyQ4VX/J1lbA395f7NvW5a/kgfGrP5Pqs+wt35MBrbGy/S5CocSX+1U+i/RdREQ5JTLxb/VKtn90Ps/oqp/3eX1D1KmR1qJ52RnqQ9YbL6nP2cBvMvV412gIhf8AB9BO61ST4w5lTC7Pha7a0JKf2kfrfQrrEQ9nibPBJDJwJGlruYiy+XKyB1LVTU8nCie5jucEhfU3vt6V88d0ai3jllibA3NbJIJm+nOAJ+ZKi3S5JnvQfNo1oa1kcExF+GV7JwCWcGRo5WrGr0awoaeD3nBTi4y2Z1ennjqYmTQvDmObdttiuLnWCYzPhUlhd8Dj48R0e8bCt7w/EKbEYBLTPBP2m8redSoVFIqt5YTt3nePUlIl7aSQAOU8iwmKZS0dEHMgdvibY0+KOcreUktyLRoVK0tMFky9TUR0sL5aiQMjbrcT9Ft2TOD00lNTYk97ZS/MlhEbvFA1jSuEYlidTiM26VMhOnxWDgt5gt87k2VgoanvHXyAU1Q69O97tEbzrbfYevnXnCpGUsS2O9Q4YqSU5c5LwOzSVMEMJlnkbEzynGy1fG8qxIx0GGZwztDpyLWGxoPWsdlTiEFbURMpzniAOaX213t2LBqHDhtKFTVv0Nb7jdaWaVPkuvXyGvT9boiLoFfzlmjUPEu9o7rUjXoOpR6DiD67utSFCLsVxTSQSbpDI6N4+011tCy+A4rFSzTmue9xmzSZCCSLX19PyWFXh1IeFe3p14OMlv4nRo3iWNj2G7XgFpsRyK1R1cNZG59PJntac06DoOhU0ckfe2CQP/ZiFt3bLDSsZki4GhnbcAia5HosOwoU5W67KpPutL8krFMUpaSKaN8n7fMsIwDy/Ralv+s3sKYzvMNuDfk2X1qXlI5rsYm9Aa35BYxCy8Os6dOjGWMt4fMIiIdM7vhTs7C6J/lU8Z/KFen0bm7Y4fPQouAH/gWHf+LF/SFKquIP8Lmu/MF1VsRHuXVxvu20W5Y3Q1vJPTlnvaT/APQXY9dtNr6Vz7u1Ue75N0tU1tzT1NidjXAjrDV511mDN6TxI4oiKqJpfIxjdbnAC65xMPBrCkUlVPSTCWnlcx45Qdarr6Cow+UxVMZadNjyO5jyqGhr7M49UzJV+MV9eHConcWH7LdA6AsagUqio562YQ0sTpH/AMPJzpuYUYU48uSIyz2B5O1NeRNLeCAG+eR4zuZZ3BcmYKMsmrCJptYH2WH6lbALW0CwGgWXtGl1OPd8VSzCj4njWhrWtBJa0WFze69RFIRwG8vIREWGEaNQcQfXd1qQo9BxB9d3WpChF2CIpFRS7hTU8u6RP3YXzWm5ba2g9PyKGrmotJ/EtCWTctzEjxH5F/FukMssRJie6PaWOsrtRS73pqebdInbsL5rTct/XalRS73pqebdInbsL5jTct9yGinSax1/X9Ec3ub3zibnTclFIqKXe9NTzbpE7dhfMablvu/XKlRS73pqebdInbsL5rTctQyqsOWHv+v6I6IiHodwyc/5fwzO171i/oCmVg/3Wb2bupWcGbmYPQN8mmjH5QpT25zHN2iy6q2Ij3Pb+MsDl7RivyOxSH7TYTIP5LO/yrNUzs+nidtY0/JVTRNnhkik4EjS13MdCSWU0E8PJ8rEEXvrCqiObKw7HAq7WwOpKyopZOFDI6N3OCQo65RP3OsVNNBWRGOojD2O+yRdaliuScsb90w526MJ4txGcPfqIW3wnPhaf4QelVKU4KRUKF3Vt5ew+XQ03DskZnuDsQfuTL8BhBcfetso6OnoYBFTRtY0bNZ5yryLMYKOxrcXtW4998ugREW5FCIiAIiLDMo0ag4g+u7rUhR6DiD67utSFCLsFVG28ttqpRDD2Lwp9Tc6/j5hObyqptPcW+1nWddujk1dKsl7ib5ztVr3K8L3eUekoaaZ9S4IfFDmudZwcR4uzbp7VaVTZHMaQNThbWVShtFNbhERDY79DHuVPHGNAY1rbcw/sq16TqvrRdYhlqn4iNuxtuj/AEV3329KtwDxD6x61cQHzz3SKLeOWeJta3NZLJuzfTngE/Mlawuld22i3LGaCt5J6cxnnYb/AOYdC5quZVWJtE6DzFHVaB2fh9MdsTT8gr6hYJ42D0Z2wt6lNUqOxSqyxUkvmwiIsnmEREAREQBERYZlGjUHEH13dakKPQcQfXd1qQoRdgiIgCIiAIiIAiIgOoM7puS7uFVzt9aB/wBLqv8A2l5K/wDUH/8ArSdi4I4aSqFI9JmY7GJ3Wbuo5MwtcY3Vcx2MgtfpIWGru6/TjRhuESPO2olDfkL9a5Giw7ibCoxNkyrywxLKdkTK5lPHFC4ljImEWJ9JJPJtWthF6Na8W23lnokksI6Vk6c7BKM7I7fNZFYnJR2fgNP6M7+orLKXD3UUy6WK8183+QiItjwCIiAIiIAiINYWGZRy19RNHI8MkcBc6AfSqN+VH3z+lU1HHyesetWlDZeVsX9+VH3z+le78qPvn9KjosGcG45G4BU5QbrPPWyw0sTs0lulz3a7DmuD71MyuyUmwagNdQV1RLDGQJWym7m30Agi1xfQvO57lNSYVDNh+IP3KN8m6RSEXAJsCD0dayGXWVeHzYTLh2GTtqJJ7B72cFrb3Om2m60zLUZwsHO9+1X3z+lN+1X3z+lR0W5rgkb9qvvn9KKOiDAREQyEREAXqDWt8wrD6TFcn6XfMV5A0sDxwm2JGtbRjqI1zcxt4qUlyzgu5If4HH67utZpW6aCOmpY6eIWbGA0BXFLisLBU7ioqlWU18WERFk8QiIgCIiAIDbSiIDA4jktS1k7pmSvgL9LmgAtv6FE8C4fPX/hjtW0otOziTY8QuYrCl+DVvAuHz1/4Y7U8C4fPX/hjtW0onZRM+srrvfZeRq3gXD56/8ADHangXD56/8ADHatpROyiPWV13vsvI1bwLh89f8AhjtTwLh89f8AhjtW0onZRHrK6732Xkat4Fw+ev8Awx2otpROyiPWV13vsvI5GiIohbQiIgC6Hkj/AIFB6z+teovWl7xy+L/8/wDPmZhERSSsBERAEREAREQBERAEREAREQBERAEREAREQH//2Q==" class="img-fluid rounded mb-3 modal-img" width="100%">
+
+        <p class="text-secondary small">
+          A powerful all-in-one roles, and staff profiles, and share mobile app credentials directly with employees—no messy self-registrations, no security risks. HR Managers can onboard new hires, assign and track training, send policy updates, manage leave requests, handle resignations, and schedule shifts—all in one place. Employees get a clean mobile experience with instant notifications, easy access to policies, and real-time rota updates. Whether you have one office or a global network, the Staff Management System keeps everything organized, connected, and compliant—so your team can focus on doing their best work.
+        </p>
+
+      </div>
+
+      <!-- Footer -->
+      <!-- <div class="modal-footer border-0 justify-content-center">
+        <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Close</button>
+      </div> -->
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL 3 -->
+<div class="modal fade" id="project3Modal" tabindex="-3">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content bg-dark text-white rounded-4">
+
+      <!-- Header -->
+      <div class="modal-header border-0">
+        <h5 class="modal-title fw-bold">Staff Management System</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body text-center">
+
+        <img src="data:image/jpeg;base64,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 class="img-fluid rounded mb-3 modal-img" width="100%">
+        <p class="">
+          A powerful all-in-one roles, and staff profiles, and share mobile app credentials directly with employees—no messy self-registrations, no security risks. HR Managers can onboard new hires, assign and track training, send policy updates, manage leave requests, handle resignations, and schedule shifts—all in one place. Employees get a clean mobile experience with instant notifications, easy access to policies, and real-time rota updates. Whether you have one office or a global network, the Staff Management System keeps everything organized, connected, and compliant—so your team can focus on doing their best work.
+        </p>
+
+      </div>
+
+      <!-- Footer -->
+      <!-- <div class="modal-footer border-0 justify-content-center">
+        <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Close</button>
+      </div> -->
+
+    </div>
+  </div>
+</div>
+
+
+
   <section style="margin-top:-100px;">
     <div class="services" id="services">
       <div class="container">
@@ -562,16 +795,6 @@
 
 
           <!-- test code view project -->
-
-
-
-
-
-
-
-
-
-
 
 
           <div>
